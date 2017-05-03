@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1" />
+<title>Insert title here</title>
+<link href="../static/css/Layout.css" th:href="@{/css/style.css}"
+	rel="stylesheet" />
+
+<style>
+html, body {
+	height: 100%;
+}
+
+.container {
+	height: 100%;
+	display: inline-block;
+	justify-content: center;
+	align-items: center;
+}
+</style>
+<script src="../static/js/jquery.js" th:href="@{/js/jquery.js}"
+	crossorigin="anonymous"></script>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('#b').click(function() {
+			$.ajax({
+				url : $('#url').val(),
+				data : $('#pName').val() + '=' + $('#pValue').val(),
+				method : 'POST',
+				header : {
+					"Content-Type" : "application/x-www-form-urlencoded"
+				},
+				success : function(result) {
+					$('#result').html(result);
+				}
+			})
+		});
+	});
+</script>
+
+</head>
+
+<body>
+	<div class="container">
+		<div style="border: 2px solid #c2c2c2; padding: 20px">
+			<table>
+				<tr>
+					<td>Url:</td>
+					<td><input type="text" id="url" placeholder="Enter Url" /></td>
+				</tr>
+				<tr>
+					<td>Parameter Name:</td>
+					<td><input type="text" id="pName"
+						placeholder="Enter parameter name" /></td>
+				</tr>
+				<tr>
+					<td>Parameter Value:</td>
+					<td><input type="text" id="pValue"
+						placeholder="Enter parameter value" /></td>
+				</tr>
+				<tr>
+					<td colspan="2"><input type="button" id="b" value="Submit" /></td>
+				</tr>
+			</table>
+		</div>
+		<div>
+			<table>
+				<tr>
+					<td>Result</td>
+					<td><div id="result"></div></td>
+				</tr>
+			</table>
+		</div>
+
+	</div>
+
+</body>
+</html>
